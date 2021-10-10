@@ -2,9 +2,15 @@
 class Assets {
   Assets._();
 
-  static const String imagesDisha = 'assets/images/disha.png';
-  static const String imagesDishb = 'assets/images/dishb.png';
-  static const String imagesDishc = 'assets/images/dishc.png';
+  static const String imagesImage1 = 'assets/images/image1.png';
+  static const String imagesImage2 = 'assets/images/image2.png';
+  static const String imagesImage3 = 'assets/images/image3.png';
+  static const String imagesImage4 = 'assets/images/image4.png';
+  static const String imagesImage5 = 'assets/images/image5.png';
+  static const String imagesImage6 = 'assets/images/image6.png';
+  static const String imagesImage7 = 'assets/images/image7.png';
+  static const String imagesImage8 = 'assets/images/image8.png';
+  static const String imagesImage9 = 'assets/images/image9.png';
   static const String vectorsAboutUs = 'assets/vectors/aboutUs.svg';
   static const String vectorsAdd = 'assets/vectors/add.svg';
   static const String vectorsAppearance = 'assets/vectors/appearance.svg';
@@ -33,5 +39,4 @@ class Assets {
   static const String vectorsStoreIcon = 'assets/vectors/store_icon.svg';
   static const String vectorsTrash = 'assets/vectors/trash.svg';
   static const String vectorsWallet = 'assets/vectors/wallet.svg';
-
 }

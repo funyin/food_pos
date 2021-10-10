@@ -13,6 +13,8 @@ mixin UIKit {
         height: 1,
       );
 
+  formSpace() => height(16);
+
   BoxDecoration roundedDecoration(
           {Color color = AppColors.background,
           Color borderColor = AppColors.border}) =>
