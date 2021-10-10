@@ -8,6 +8,7 @@ import 'package:food_pos/core/theme/app_colors.dart';
 import 'package:food_pos/core/utils/ui_kit.dart';
 import 'package:food_pos/generated/assets.dart';
 import 'package:food_pos/presentation/widgets/app_button.dart';
+import 'package:food_pos/presentation/widgets/app_drop_down.dart';
 import 'package:food_pos/presentation/widgets/app_text_field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -41,7 +42,7 @@ class _HomeState extends State<Home>
 
   var selectedTab = ValueNotifier(0);
   var selectedOrderCategory = ValueNotifier(0);
-  var dishCategory = ["Dine In", "To Go", "Delivery"];
+  var dishCategories = ["Dine In", "To Go", "Delivery"];
   var selectedDishCategory = ValueNotifier(0);
   var selectedPaymentMethod = ValueNotifier(0);
   var paymentMethods = <MapEntry<String, String>>[
@@ -271,49 +272,10 @@ class _HomeState extends State<Home>
                                                   .headline2,
                                             ),
                                           ),
-                                          ValueListenableBuilder<int>(
-                                            valueListenable:
-                                                selectedDishCategory,
-                                            builder: (context, value, child) =>
-                                                PopupMenuButton<int>(
-                                              initialValue: value,
-                                              tooltip: "Select category",
-                                              onSelected: (value) =>
-                                                  selectedDishCategory.value =
-                                                      value,
-                                              itemBuilder: (context) =>
-                                                  List.generate(
-                                                dishCategory.length,
-                                                (index) => PopupMenuItem(
-                                                  value: index,
-                                                  child:
-                                                      Text(dishCategory[index]),
-                                                ),
-                                              ),
-                                              child: Container(
-                                                height: 48,
-                                                padding:
-                                                    const EdgeInsets.all(14),
-                                                decoration: roundedDecoration(
-                                                    color: AppColors
-                                                        .backgroundDark),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.keyboard_arrow_down,
-                                                      color: Colors.white,
-                                                    ),
-                                                    width(10),
-                                                    Text(dishCategory[value]),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
+                                          AppDropDown(
+                                              valueListener:
+                                                  selectedDishCategory,
+                                              options: dishCategories),
                                         ],
                                       ),
                                     ),
@@ -519,12 +481,14 @@ class _HomeState extends State<Home>
                   children: [
                     Expanded(
                         child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                           Text("Order Type"),
                           height(8),
-                          AppTextField(),
+                          AppDropDown(
+                              valueListener: selectedDishCategory,
+                              options: dishCategories),
                         ])),
                     width(8),
                     Expanded(
@@ -591,14 +555,14 @@ class _HomeState extends State<Home>
                         valueListenable: selectedOrderCategory,
                         builder: (context, value, child) => AppButton(
                           buttonSize: ButtonSize.small,
-                          text: dishCategory[index],
+                          text: dishCategories[index],
                           onTap: () => selectedOrderCategory.value = index,
                           buttonType: value == index
                               ? ButtonType.primary
                               : ButtonType.secondary,
                         ),
                       ),
-                      itemCount: dishCategory.length,
+                      itemCount: dishCategories.length,
                       separatorBuilder: (BuildContext context, int index) =>
                           width(8),
                     ),
